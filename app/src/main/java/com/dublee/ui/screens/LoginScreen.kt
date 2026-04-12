@@ -1,6 +1,7 @@
 package com.dublee.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -42,7 +43,11 @@ fun LoginScreen() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround,
             ) {
-                DubleeImageWidget(256.dp)
+                Box(
+                    modifier = Modifier.weight(0.5f)
+                ) {
+                    DubleeImageWidget()
+                }
 
                 TextField(
                     value = login,
@@ -61,8 +66,8 @@ fun LoginScreen() {
 
                 Button(
                     modifier = Modifier
-                        .width(256.dp)
-                        .height(64.dp),
+                        .width(164.dp)
+                        .weight(0.25f),
                     onClick = {}
                 ) {
                     Text("Войти")
