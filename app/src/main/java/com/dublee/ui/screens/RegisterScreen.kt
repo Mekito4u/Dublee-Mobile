@@ -91,6 +91,8 @@ fun RegisterScreen() {
                 ) {
                     Text("Регистрация", style = MaterialTheme.typography.titleLarge)
                 }
+
+                Spacer(modifier=Modifier.weight(0.05f))
             }
         }
     }

@@ -9,6 +9,6 @@ import androidx.compose.ui.unit.sp
 fun DubleeImageWidget() {
     Text(
         text = "❤",
-        fontSize = 256.sp
+        fontSize = 128.sp
     )
 }

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -38,42 +39,52 @@ fun LoginScreen() {
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
+                    .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceAround,
             ) {
                 Box(
-                    modifier = Modifier.weight(0.5f)
+                    modifier = Modifier.weight(0.4f)
                 ) {
                     DubleeImageWidget()
                 }
 
-                TextField(
-                    value = login,
-                    onValueChange = { login = it },
-                    label = { Text("Логин") }
-                )
+                Spacer(modifier = Modifier.weight(0.05f))
 
-                TextField(
-                    modifier=Modifier,
-                    value = password,
-                    onValueChange = { password = it },
-                    label = { Text("Пароль") }
-                )
+                Column(
+                    modifier = Modifier.weight(0.40f),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    TextField(
+                        modifier = Modifier.weight(0.3f),
+                        value = login,
+                        onValueChange = { login = it },
+                        label = { Text("Логин") }
+                    )
 
-                Spacer(modifier = Modifier.height(32.dp))
+                    Spacer(modifier = Modifier.weight(0.05f))
+
+                    TextField(
+                        modifier = Modifier.weight(0.3f),
+                        value = password,
+                        onValueChange = { password = it },
+                        label = { Text("Пароль") }
+                    )
+
+                    Spacer(modifier = Modifier.weight(0.35f))
+                }
+
+                Spacer(modifier = Modifier.weight(0.05f))
 
                 Button(
                     modifier = Modifier
-                        .width(164.dp)
-                        .weight(0.25f),
+                        .weight(0.10f)
+                        .width(256.dp),
                     onClick = {}
                 ) {
-                    Text("Войти")
+                    Text("Войти", style = MaterialTheme.typography.titleLarge)
                 }
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.weight(0.05f))
             }
         }
     }
