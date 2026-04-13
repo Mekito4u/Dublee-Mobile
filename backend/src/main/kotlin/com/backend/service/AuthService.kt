@@ -1,5 +1,6 @@
 package com.backend.service
 
+import com.backend.config.JwtUtil
 import com.backend.entity.User
 import com.backend.exception.UserException
 import com.backend.repository.UserRepository
@@ -9,7 +10,8 @@ import org.springframework.stereotype.Service
 @Service
 class AuthService(
     private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder
+    private val passwordEncoder: PasswordEncoder,
+    private val jwtUtil: JwtUtil
 ) {
     fun register(login: String, password: String) {
         val userExists = userRepository.existsByLogin(login)
@@ -19,7 +21,7 @@ class AuthService(
         userRepository.save(User(login = login, password = passwordHash, name = login))
     }
 
-    fun login(login: String, password: String) {
+    fun login(login: String, password: String): String {
         val userExists = userRepository.existsByLogin(login)
         if (!userExists) throw UserException(404, "User not found")
 
@@ -28,6 +30,6 @@ class AuthService(
             throw UserException(401, "Wrong password")
         }
 
-
+        return jwtUtil.generateToken(login)
     }
 }
