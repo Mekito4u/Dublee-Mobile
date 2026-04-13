@@ -1,6 +1,7 @@
-package com.dublee.ui.components
+package com.app.ui.components
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
@@ -9,19 +10,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 @Composable
-fun DubleeWidget() {
-    Box(
+fun NoAccountWidget() {
+    Column(
         modifier = Modifier
             .fillMaxWidth()
             .height(64.dp),
-        contentAlignment = Alignment.Center
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text("У вас нет аккаунта?")
         Text(
-            text = "Dublee",
-            style = MaterialTheme.typography.titleLarge
+            text = "Регистрация",
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.clickable {
+            }
         )
     }
 }

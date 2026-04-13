@@ -1,10 +1,10 @@
-package com.dublee.ui.screens
+package com.app.ui.screens
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 
 @Composable
-fun SwipeScreen(
+fun MatchScreen(
     topBar: @Composable () -> Unit,
     content: @Composable (PaddingValues) -> Unit,
     bottomBar: @Composable () -> Unit,

@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Dublee"
 include(":app")
- 
+include(":backend")

@@ -1,4 +1,4 @@
-package com.dublee
+package com.app
 
 import org.junit.Test
 

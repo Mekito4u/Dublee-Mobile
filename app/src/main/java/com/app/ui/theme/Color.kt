@@ -1,4 +1,4 @@
-package com.dublee.ui.theme
+package com.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
