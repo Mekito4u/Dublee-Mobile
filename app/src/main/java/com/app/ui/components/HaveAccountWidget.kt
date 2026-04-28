@@ -18,7 +18,7 @@ import com.app.ui.theme.MyBlue
 
 @Preview
 @Composable
-fun NoAccountWidget(
+fun HaveAccountWidget(
     navController: NavController = rememberNavController()
 ) {
     val myStyle = MaterialTheme.typography.titleMedium
@@ -26,14 +26,14 @@ fun NoAccountWidget(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("У вас нет аккаунта?", style = myStyle)
+        Text("У вас уже есть аккаунта?", style = myStyle)
         Text(
-            text = "Регистрация",
+            text = "Войти",
             style = myStyle,
             color = MyBlue,
             modifier = Modifier.clickable {
-                Log.d("Navigation", "switch to register")
-                navController.navigate("register")
+                Log.d("Navigation", "switch to login")
+                navController.navigate("login")
             }
         )
     }
