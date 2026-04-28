@@ -1,4 +1,4 @@
-package com.app.ui.screens
+package com.app.ui.views
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,13 +9,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun BaseScreen(
-    topBar: @Composable () -> Unit,
-    bottomBar: @Composable () -> Unit,
+fun BaseView(
+    mod: Modifier = Modifier,
+    topBar: @Composable () -> Unit = {},
+    bottomBar: @Composable () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = mod
+            .fillMaxSize()
     ) {
         // Верх 10%
         Box(
@@ -30,7 +32,6 @@ fun BaseScreen(
         // Контент 80%
         Box(
             modifier = Modifier
-                .fillMaxSize()
                 .weight(0.8f),
             contentAlignment = Alignment.Center
         ) {
