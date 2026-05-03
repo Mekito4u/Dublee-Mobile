@@ -19,12 +19,14 @@ import com.app.ui.theme.MyBlue
 @Preview
 @Composable
 fun NoAccountWidget(
-    navController: NavController = rememberNavController()
+    navController: NavController = rememberNavController(),
+    modifier: Modifier = Modifier
 ) {
     val myStyle = MaterialTheme.typography.titleMedium
 
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("У вас нет аккаунта?", style = myStyle)
         Text(

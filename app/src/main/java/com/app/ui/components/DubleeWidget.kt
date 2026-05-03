@@ -19,7 +19,7 @@ fun DubleeWidget() {
         modifier = Modifier
             .fillMaxWidth()
             .height(64.dp)
-            .padding(start = 32.dp),
+            .padding(start = 28.dp),
         contentAlignment = Alignment.CenterStart
     ) {
         Text(

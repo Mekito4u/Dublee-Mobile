@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.ui.components.DubleeWidget
+import com.app.ui.components.HaveAccountWidget
 import com.app.ui.components.MyButton
 import com.app.ui.components.MyTextField
 import com.app.ui.components.NoAccountWidget
@@ -50,6 +51,7 @@ fun LoginView(
 
     BaseView(
         mod = Modifier.background(MyBeige),
+        bottomBar = { NoAccountWidget(navController) }
     ) {
         Column(
             modifier = Modifier
@@ -102,8 +104,7 @@ fun LoginView(
             )
 
             Spacer(modifier = Modifier.weight(0.05f))
-
-            NoAccountWidget(navController)
+            Spacer(modifier = Modifier.weight(0.05f))
         }
     }
 }

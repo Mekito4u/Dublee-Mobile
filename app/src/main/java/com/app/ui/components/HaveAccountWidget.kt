@@ -19,11 +19,13 @@ import com.app.ui.theme.MyBlue
 @Preview
 @Composable
 fun HaveAccountWidget(
-    navController: NavController = rememberNavController()
+    navController: NavController = rememberNavController(),
+    modifier: Modifier = Modifier
 ) {
     val myStyle = MaterialTheme.typography.titleMedium
 
     Column(
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("У вас уже есть аккаунта?", style = myStyle)

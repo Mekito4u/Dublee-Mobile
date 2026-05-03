@@ -7,10 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MaterialTheme.shapes
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -41,6 +37,7 @@ fun RegisterView(
 
     BaseView(
         mod = Modifier.background(MyBeige),
+        bottomBar = { HaveAccountWidget(navController) }
     ) {
         Column(
             modifier = Modifier
@@ -65,7 +62,7 @@ fun RegisterView(
                 MyTextField(
                     modifier = Modifier.weight(0.3f),
                     value = login,
-                    onValueChange = { login = it},
+                    onValueChange = { login = it },
                     prefix = "Логин",
                     backgroundColor = MyCream
                 )
@@ -75,7 +72,7 @@ fun RegisterView(
                 MyTextField(
                     modifier = Modifier.weight(0.3f),
                     value = password,
-                    onValueChange = { password = it},
+                    onValueChange = { password = it },
                     prefix = "Пароль",
                     backgroundColor = MyCream
                 )
@@ -85,7 +82,7 @@ fun RegisterView(
                 MyTextField(
                     modifier = Modifier.weight(0.3f),
                     value = repeatPassword,
-                    onValueChange = { repeatPassword = it},
+                    onValueChange = { repeatPassword = it },
                     prefix = "Повторите пароль",
                     backgroundColor = MyCream
                 )
@@ -97,12 +94,13 @@ fun RegisterView(
                 onClick = { navController.navigate("login") },
                 text = "Регистрация",
                 backgroundColor = MyBlue,
-                modifier = Modifier.weight(0.1f).width(256.dp)
+                modifier = Modifier
+                    .weight(0.1f)
+                    .width(256.dp)
             )
 
             Spacer(modifier = Modifier.weight(0.05f))
-
-            HaveAccountWidget(navController)
+            Spacer(modifier = Modifier.weight(0.05f))
         }
     }
 }
