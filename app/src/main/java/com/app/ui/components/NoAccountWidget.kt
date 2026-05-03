@@ -33,7 +33,7 @@ fun NoAccountWidget(
             text = "Регистрация",
             style = myStyle,
             color = MyBlue,
-            modifier = Modifier.clickable {
+            modifier = modifier.clickable {
                 Log.d("Navigation", "switch to register")
                 navController.navigate("register")
             }
