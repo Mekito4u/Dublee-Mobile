@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.app.Nav
 import com.app.ui.widgets.DubleeWidget
 import com.app.ui.widgets.MyButton
 import com.app.ui.widgets.MyTextField
@@ -88,7 +89,7 @@ fun CreatePairView(
             Spacer(modifier = Modifier.weight(0.05f))
 
             MyButton(
-                onClick = { navController.navigate("category") },
+                onClick = { navController.navigate(Nav.Main.route) },
                 text = "Пригласить",
                 backgroundColor = MyBlue,
                 modifier = Modifier

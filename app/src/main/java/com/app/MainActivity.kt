@@ -24,6 +24,7 @@ class MainActivity : ComponentActivity() {
 }
 
 enum class Nav(val route: String) {
+    Main(""),
     Login("login"),
     Register("register"),
     CreatePair("create_pair"),
@@ -35,7 +36,8 @@ enum class Nav(val route: String) {
 fun AppNavigation() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Nav.Login.route) {
+    NavHost(navController = navController, startDestination = Nav.CategorySelection.route) {
+        composable(Nav.Main.route) { MainView(navController) }
         composable(Nav.Login.route) { LoginView(navController) }
         composable(Nav.Register.route) { RegisterView(navController) }
         composable(Nav.CreatePair.route) { CreatePairView(navController) }

@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.app.Nav
 import com.app.domain.models.CategoryModel
 import com.app.ui.theme.MyBeige
 import com.app.ui.theme.MyBlue
@@ -82,7 +83,7 @@ fun CategorySelectionView(
             Spacer(modifier = Modifier.weight(0.05f))
 
             MyButton(
-                onClick = { navController.navigate("swipe/${selectedId}") },
+                onClick = { navController.navigate(Nav.Main.route) },
                 text = "Выбрать",
                 backgroundColor = MyBlue,
                 modifier = Modifier

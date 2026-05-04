@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,18 +14,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.app.Nav
+import com.app.ui.theme.MyBeige
+import com.app.ui.theme.MyBlue
+import com.app.ui.theme.MyCream
 import com.app.ui.widgets.DubleeWidget
 import com.app.ui.widgets.MyButton
 import com.app.ui.widgets.MyTextField
 import com.app.ui.widgets.NoAccountWidget
-import com.app.ui.theme.MyBeige
-import com.app.ui.theme.MyBlue
-import com.app.ui.theme.MyCream
 
 @Preview
 @Composable
@@ -84,7 +83,7 @@ fun LoginView(
             Spacer(modifier = Modifier.weight(0.05f))
 
             MyButton(
-                onClick = { navController.navigate("register") },
+                onClick = { navController.navigate(Nav.Main.route) },
                 text = "Войти",
                 backgroundColor = MyBlue,
                 modifier = Modifier.weight(0.1f).width(256.dp)
