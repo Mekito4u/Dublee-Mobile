@@ -11,13 +11,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.app.Nav
 import com.app.ui.theme.MyBrown
 
 @Preview
 @Composable
 fun GoBackWidget(
     navController: NavController = rememberNavController(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = Modifier
@@ -27,7 +28,12 @@ fun GoBackWidget(
         contentAlignment = Alignment.CenterStart
     ) {
         MyButton(
-            onClick = { navController.navigate("category") },
+            onClick = {
+                when (navController.currentDestination?.route) {
+                    Nav.Login.route, Nav.Register.route -> navController.navigate(Nav.Main.route)
+                    else -> navController.popBackStack()
+                }
+            },
             text = "<-",
             modifier = modifier,
             backgroundColor = MyBrown,

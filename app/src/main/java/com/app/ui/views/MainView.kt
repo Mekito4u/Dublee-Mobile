@@ -16,7 +16,6 @@ fun MainView(
 ) {
     BaseView(
         mod = Modifier.background(MyBeige),
-        topBar = { GoBackWidget(navController) }
     ) {
 
     }

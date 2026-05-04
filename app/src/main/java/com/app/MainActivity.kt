@@ -43,7 +43,7 @@ fun AppNavigation() {
         composable(Nav.CreatePair.route) { CreatePairView(navController) }
         composable(Nav.JoinPair.route) { JoinPairView(navController) }
         composable(Nav.CategorySelection.route) { CategorySelectionView(navController) }
-//        composable("swipe/{categoryId}") {
+//        composable("category/{categoryId}") {
 //            val categoryId = it.arguments?.getString("categoryId")
 //            SwipeView(navController, categoryId)
 //        }
