@@ -7,10 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MaterialTheme.shapes
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,15 +20,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.app.ui.components.DubleeWidget
-import com.app.ui.components.HaveAccountWidget
-import com.app.ui.components.MyButton
-import com.app.ui.components.MyTextField
-import com.app.ui.components.NoAccountWidget
+import com.app.ui.widgets.DubleeWidget
+import com.app.ui.widgets.MyButton
+import com.app.ui.widgets.MyTextField
+import com.app.ui.widgets.NoAccountWidget
 import com.app.ui.theme.MyBeige
 import com.app.ui.theme.MyBlue
 import com.app.ui.theme.MyCream
-import com.app.ui.theme.MyCyan
 
 @Preview
 @Composable
@@ -41,13 +35,6 @@ fun LoginView(
 ) {
     var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-
-    val hideLine = TextFieldDefaults.colors(
-        focusedIndicatorColor = Color.Transparent,
-        unfocusedIndicatorColor = Color.Transparent,
-        disabledIndicatorColor = Color.Transparent,
-        errorIndicatorColor = Color.Transparent
-    )
 
     BaseView(
         mod = Modifier.background(MyBeige),

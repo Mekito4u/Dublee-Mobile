@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -21,10 +20,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.app.ui.components.DubleeWidget
-import com.app.ui.components.HaveAccountWidget
-import com.app.ui.components.MyButton
-import com.app.ui.components.MyTextField
+import com.app.ui.widgets.DubleeWidget
+import com.app.ui.widgets.MyButton
+import com.app.ui.widgets.MyTextField
 import com.app.ui.theme.MyBeige
 import com.app.ui.theme.MyBlue
 import com.app.ui.theme.MyCream
