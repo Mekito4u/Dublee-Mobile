@@ -66,7 +66,7 @@ fun CategorySelectionView(
                 modifier = Modifier
                     .weight(0.50f)
                     .fillMaxSize()
-                    .padding(start = 24.dp),
+                    .padding(start = 24.dp, end = 24.dp),
                 horizontalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 items(categoryList) { item ->
@@ -75,7 +75,7 @@ fun CategorySelectionView(
                         description = item.description,
                         imageUrl = item.imageUrl,
                         isSelected = selectedId == item.id,
-                        onClicked = { selectedId = item.id}
+                        onClicked = { selectedId = item.id }
                     )
                 }
             }

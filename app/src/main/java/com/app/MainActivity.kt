@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
 }
 
 enum class Nav(val route: String) {
-    Main(""),
+    Main("main"),
     Login("login"),
     Register("register"),
     CreatePair("create_pair"),
