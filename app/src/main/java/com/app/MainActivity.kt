@@ -23,16 +23,24 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+enum class Nav(val route: String) {
+    Login("login"),
+    Register("register"),
+    CreatePair("create_pair"),
+    JoinPair("join_pair"),
+    CategorySelection("category_selection"),
+}
+
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "login") {
-        composable("login") { LoginView(navController) }
-        composable("register") { RegisterView(navController) }
-//        composable("create_pair") { CreatePairView(navController) }
-//        composable("join_pair") { JoinPairView(navController) }
-//        composable("category") { CategoryView(navController) }
+    NavHost(navController = navController, startDestination = Nav.Login.route) {
+        composable(Nav.Login.route) { LoginView(navController) }
+        composable(Nav.Register.route) { RegisterView(navController) }
+        composable(Nav.CreatePair.route) { CreatePairView(navController) }
+        composable(Nav.JoinPair.route) { JoinPairView(navController) }
+        composable(Nav.CategorySelection.route) { CategorySelectionView(navController) }
 //        composable("swipe/{categoryId}") {
 //            val categoryId = it.arguments?.getString("categoryId")
 //            SwipeView(navController, categoryId)
