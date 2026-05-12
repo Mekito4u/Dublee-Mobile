@@ -1,89 +1,48 @@
 package com.app.ui.bars
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme.typography
-import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.Nav
+import com.app.ui.buttons.NavigationButton
+import com.app.ui.theme.MyBeige
 import com.app.ui.theme.MyBrown
-import com.app.ui.theme.MyButton
-import com.app.ui.theme.MyCream
 
-@Composable
-fun NavigationButton(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit = {},
-    icon: ImageVector = Icons.Default.Home,
-    text: String = "Главная",
-    isSelected: Boolean = false
-) {
-    val color = if (isSelected) {
-        Color.Black
-    } else {
-        MyBrown
-    }
-
-    MyButton(
-        modifier = modifier.fillMaxSize(),
-        onClick = onClick,
-        content = {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Icon(
-                    modifier = Modifier,
-                    imageVector = icon,
-                    contentDescription = "",
-                    tint = color,
-                )
-                Text(
-                    modifier = Modifier,
-                    textAlign = TextAlign.Center,
-                    text = text,
-                    style = typography.titleSmall,
-                    color = color
-                )
-            }
-        },
-        contentPadding = PaddingValues(4.dp),
-        backgroundColor = MyCream
-    )
-}
 
 @Preview
 @Composable
-fun NavigationBar(
+fun BottomBar(
     navController: NavController = rememberNavController(),
-    currentRoute: String = ""
+    currentRoute: String = "main"
 ) {
+    val myShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MyCream),
-        verticalAlignment = Alignment.CenterVertically
+            .clip(shape = myShape)
+            .background(MyBeige)
+            .border(
+                width = 1.dp,
+                color = MyBrown,
+                shape = myShape
+            ),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         NavigationButton(
             modifier = Modifier.weight(0.25f),
