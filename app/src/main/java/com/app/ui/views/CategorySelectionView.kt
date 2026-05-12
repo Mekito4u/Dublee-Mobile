@@ -45,7 +45,6 @@ fun CategorySelectionView(
         )
     }
     var categoryList by remember { mutableStateOf(exList) }
-    var selectedId by remember { mutableStateOf(0) }
 
     BaseView(
         modifier = Modifier.background(MyCream),
@@ -73,7 +72,6 @@ fun CategorySelectionView(
                     CategoryWidget(
                         title = item.title,
                         description = item.description,
-                        onClicked = { selectedId = item.id }
                     )
                 }
             }
