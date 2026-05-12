@@ -25,7 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.app.Nav
 import com.app.ui.widgets.DubleeWidget
 import com.app.ui.theme.MyButton
-import com.app.ui.theme.MyBeige
+import com.app.ui.theme.MyCream
 import com.app.ui.theme.MyGreen
 import com.app.ui.theme.MyRed
 
@@ -37,7 +37,7 @@ fun JoinPairView(
     var arriveId by remember { mutableStateOf("#2") }
 
     BaseView(
-        modifier = Modifier.background(MyBeige),
+        modifier = Modifier.background(MyCream),
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),

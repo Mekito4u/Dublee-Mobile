@@ -21,12 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.Nav
-import com.app.ui.widgets.DubleeWidget
+import com.app.ui.theme.MyCream
+import com.app.ui.theme.MyBeige
 import com.app.ui.theme.MyButton
 import com.app.ui.theme.MyTextField
-import com.app.ui.theme.MyBeige
-import com.app.ui.theme.MyBlue
-import com.app.ui.theme.MyCream
+import com.app.ui.widgets.DubleeWidget
 
 @Preview
 @Composable
@@ -37,7 +36,7 @@ fun CreatePairView(
     var inviteId by remember { mutableStateOf("") }
 
     BaseView(
-        modifier = Modifier.background(MyBeige),
+        modifier = Modifier.background(MyCream),
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -91,7 +90,7 @@ fun CreatePairView(
             MyButton(
                 onClick = { navController.navigate(Nav.Main.route) },
                 text = "Пригласить",
-                backgroundColor = MyBlue,
+                backgroundColor = MyBeige,
                 modifier = Modifier
                     .weight(0.1f)
                     .width(256.dp)

@@ -1,12 +1,15 @@
 package com.app.ui.views
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.app.ui.viewmodel.MainViewModel
 
 @Composable
 fun CategoryView(
-    topBar: @Composable () -> Unit,
-    content: @Composable (PaddingValues) -> Unit,
-    bottomBar: @Composable () -> Unit,
+    navController: NavController = rememberNavController(),
+    categoryId: Int? = null,
+    viewModel: MainViewModel = viewModel()
 ) {
 }

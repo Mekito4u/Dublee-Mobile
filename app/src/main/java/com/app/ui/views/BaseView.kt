@@ -13,15 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.app.ui.bars.NavigationBar
-import com.app.ui.theme.MyBeige
+import com.app.ui.bars.BottomBar
+import com.app.ui.bars.TopBar
+import com.app.ui.theme.MyCream
 
 @Preview
 @Composable
 fun BaseView(
     modifier: Modifier = Modifier,
     navController: NavController = rememberNavController(),
-    topBar: @Composable () -> Unit = {},
     content: @Composable () -> Unit = {}
 ) {
     val currentRoute = navController.currentDestination?.route ?: ""
@@ -31,7 +31,7 @@ fun BaseView(
             modifier = modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(MyBeige)
+                .background(MyCream)
         ) {
             // Верх 10%
             Box(
@@ -40,7 +40,7 @@ fun BaseView(
                     .weight(0.1f),
                 contentAlignment = Alignment.Center
             ) {
-                topBar()
+                TopBar(navController)
             }
 
             // Контент 80%
@@ -60,7 +60,7 @@ fun BaseView(
                     .weight(0.1f),
                 contentAlignment = Alignment.Center
             ) {
-                NavigationBar(navController, currentRoute)
+                BottomBar(navController, currentRoute)
             }
         }
     }
