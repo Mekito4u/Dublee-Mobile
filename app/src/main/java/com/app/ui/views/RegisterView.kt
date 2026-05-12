@@ -20,11 +20,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.Nav
 import com.app.ui.widgets.DubleeWidget
-import com.app.ui.widgets.HaveAccountWidget
 import com.app.ui.theme.MyButton
 import com.app.ui.theme.MyTextField
-import com.app.ui.theme.MyBeige
-import com.app.ui.theme.MyBlue
 import com.app.ui.theme.MyCream
 
 @Preview
@@ -37,8 +34,8 @@ fun RegisterView(
     var repeatPassword by remember { mutableStateOf("") }
 
     BaseView(
-        modifier = Modifier.background(MyBeige),
-        bottomBar = { HaveAccountWidget(navController) }
+        modifier = Modifier.background(MyCream),
+        //bottomBar = { HaveAccountWidget(navController) }
     ) {
         Column(
             modifier = Modifier
@@ -94,7 +91,6 @@ fun RegisterView(
             MyButton(
                 onClick = { navController.navigate(Nav.Main.route) },
                 text = "Регистрация",
-                backgroundColor = MyBlue,
                 modifier = Modifier
                     .weight(0.1f)
                     .width(256.dp)

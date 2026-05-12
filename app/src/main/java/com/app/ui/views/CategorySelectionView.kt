@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,12 +25,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.Nav
 import com.app.domain.models.CategoryModel
+import com.app.ui.theme.MyCream
 import com.app.ui.theme.MyBeige
-import com.app.ui.theme.MyBlue
+import com.app.ui.theme.MyButton
 import com.app.ui.widgets.CategoryWidget
 import com.app.ui.widgets.DubleeWidget
-import com.app.ui.widgets.GoBackWidget
-import com.app.ui.theme.MyButton
 
 @Preview
 @Composable
@@ -40,15 +41,14 @@ fun CategorySelectionView(
             index,
             "Бебра",
             "Крутая",
-            "\uD83C\uDFA8"
+            Icons.Default.Home
         )
     }
     var categoryList by remember { mutableStateOf(exList) }
     var selectedId by remember { mutableStateOf(0) }
 
     BaseView(
-        modifier = Modifier.background(MyBeige),
-        topBar = { GoBackWidget(navController) }
+        modifier = Modifier.background(MyCream),
     ) {
         Column(
             modifier = Modifier
@@ -73,8 +73,6 @@ fun CategorySelectionView(
                     CategoryWidget(
                         title = item.title,
                         description = item.description,
-                        imageUrl = item.imageUrl,
-                        isSelected = selectedId == item.id,
                         onClicked = { selectedId = item.id }
                     )
                 }
@@ -85,7 +83,7 @@ fun CategorySelectionView(
             MyButton(
                 onClick = { navController.navigate(Nav.Main.route) },
                 text = "Выбрать",
-                backgroundColor = MyBlue,
+                backgroundColor = MyBeige,
                 modifier = Modifier
                     .weight(0.1f)
                     .width(256.dp)
