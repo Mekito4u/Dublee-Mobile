@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 fun MyButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
-    backgroundColor: Color = MaterialTheme.colorScheme.primary,
+    backgroundColor: Color = MyBeige,
     text: String = "-",
     style: TextStyle = MaterialTheme.typography.titleLarge,
     content: @Composable RowScope.() -> Unit = {

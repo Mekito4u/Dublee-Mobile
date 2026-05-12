@@ -1,42 +1,48 @@
 package com.app.ui.widgets
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme.shapes
+import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.app.ui.theme.MyBlue
+import com.app.ui.theme.MyBeige
 import com.app.ui.theme.MyBrown
-import com.app.ui.theme.MyCream
-import com.app.ui.theme.MyCyan
+import com.app.ui.theme.MyText
 
 @Preview
 @Composable
 fun CategoryWidget(
     title: String = "title",
     description: String = "description",
-    imageUrl: String = "\uD83C\uDFA8",
-    isSelected: Boolean = false,
+    icon: ImageVector = Icons.Default.Home,
     onClicked: () -> Unit = {}
 ) {
     Surface(
         shape = shapes.large,
-        modifier = Modifier.width(256.dp),
-        color = if (isSelected) MyCream else MyBrown,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                start = 24.dp,
+                end = 24.dp,
+            )
+            .border(
+                width = 1.dp,
+                color = MyBrown,
+                shape = shapes.large
+            ),
+        color = MyBeige,
         onClick = onClicked
     ) {
         Column(
@@ -45,21 +51,18 @@ fun CategoryWidget(
                 .padding(16.dp),
             verticalArrangement = Arrangement.Top,
         ) {
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = imageUrl,
-                style = MaterialTheme.typography.headlineLarge,
-                textAlign = TextAlign.Center
+            Icon(
+                modifier = Modifier,
+                imageVector = icon,
+                contentDescription = "",
             )
-            Text(
-                modifier = Modifier.fillMaxWidth(),
+            MyText(
+                Modifier.fillMaxWidth(),
                 text = title,
-                style = MaterialTheme.typography.headlineLarge,
-                textAlign = TextAlign.Center
             )
-            Text(
+            MyText(
                 text = description,
-                style = MaterialTheme.typography.headlineSmall
+                style = typography.headlineSmall
             )
         }
     }
