@@ -1,4 +1,4 @@
-package com.app.ui.widgets
+package com.app.ui.theme
 
 import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.material3.Text

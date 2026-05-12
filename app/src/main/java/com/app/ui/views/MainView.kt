@@ -7,7 +7,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.ui.theme.MyBeige
-import com.app.ui.widgets.GoBackWidget
 
 @Preview
 @Composable
@@ -15,7 +14,7 @@ fun MainView(
     navController: NavController = rememberNavController()
 ) {
     BaseView(
-        mod = Modifier.background(MyBeige),
+        modifier = Modifier.background(MyBeige),
     ) {
 
     }

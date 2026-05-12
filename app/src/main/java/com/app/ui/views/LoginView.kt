@@ -23,8 +23,8 @@ import com.app.ui.theme.MyBeige
 import com.app.ui.theme.MyBlue
 import com.app.ui.theme.MyCream
 import com.app.ui.widgets.DubleeWidget
-import com.app.ui.widgets.MyButton
-import com.app.ui.widgets.MyTextField
+import com.app.ui.theme.MyButton
+import com.app.ui.theme.MyTextField
 import com.app.ui.widgets.NoAccountWidget
 
 @Preview
@@ -36,8 +36,8 @@ fun LoginView(
     var password by remember { mutableStateOf("") }
 
     BaseView(
-        mod = Modifier.background(MyBeige),
-        bottomBar = { NoAccountWidget(navController) }
+        modifier = Modifier.background(MyBeige),
+        bottomBar = { NoAccountWidget(navController) },
     ) {
         Column(
             modifier = Modifier

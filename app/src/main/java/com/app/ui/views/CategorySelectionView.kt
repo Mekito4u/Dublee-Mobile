@@ -28,7 +28,7 @@ import com.app.ui.theme.MyBlue
 import com.app.ui.widgets.CategoryWidget
 import com.app.ui.widgets.DubleeWidget
 import com.app.ui.widgets.GoBackWidget
-import com.app.ui.widgets.MyButton
+import com.app.ui.theme.MyButton
 
 @Preview
 @Composable
@@ -47,7 +47,7 @@ fun CategorySelectionView(
     var selectedId by remember { mutableStateOf(0) }
 
     BaseView(
-        mod = Modifier.background(MyBeige),
+        modifier = Modifier.background(MyBeige),
         topBar = { GoBackWidget(navController) }
     ) {
         Column(

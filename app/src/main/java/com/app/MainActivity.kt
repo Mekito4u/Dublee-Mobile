@@ -30,6 +30,9 @@ enum class Nav(val route: String) {
     CreatePair("create_pair"),
     JoinPair("join_pair"),
     CategorySelection("category_selection"),
+    Likes("likes"),
+    Stats("stats"),
+    Profile("profile"),
 }
 
 @Composable

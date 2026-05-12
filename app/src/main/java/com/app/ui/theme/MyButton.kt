@@ -1,5 +1,7 @@
-package com.app.ui.widgets
+package com.app.ui.theme
 
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -9,17 +11,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.tooling.preview.Preview
 
+@Preview
 @Composable
 fun MyButton(
-    modifier: Modifier,
-    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
     backgroundColor: Color = MaterialTheme.colorScheme.primary,
-    text: String,
-    navController: NavController = rememberNavController(),
+    text: String = "-",
     style: TextStyle = MaterialTheme.typography.titleLarge,
+    content: @Composable RowScope.() -> Unit = {
+        Text(
+            text,
+            style = style
+        )
+    },
+    contentPadding: PaddingValues = ButtonDefaults.ContentPadding
 ) {
     Button(
         shape = shapes.large,
@@ -27,11 +35,8 @@ fun MyButton(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor
-        )
-    ) {
-        Text(
-            text,
-            style = style
-        )
-    }
+        ),
+        content = content,
+        contentPadding = contentPadding,
+    )
 }
