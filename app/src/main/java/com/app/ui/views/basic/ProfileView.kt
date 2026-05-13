@@ -1,4 +1,4 @@
-package com.app.ui.views
+package com.app.ui.views.basic
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
@@ -19,14 +19,15 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.Nav
 import com.app.ui.theme.MyText
-import com.app.ui.viewmodel.MainViewModel
+import com.app.ui.viewmodel.basic.MainViewModel
+import com.app.ui.views.BaseView
 import com.app.ui.widgets.CategoryWidget
 import com.app.ui.widgets.DubleeIconWidget
 import com.app.ui.widgets.DubleeWidget
 
 @Preview
 @Composable
-fun MainView(
+fun ProfileView(
     navController: NavController = rememberNavController(),
     viewModel: MainViewModel = viewModel()
 ) {

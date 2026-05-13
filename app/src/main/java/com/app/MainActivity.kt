@@ -13,8 +13,9 @@ import com.app.ui.views.CategoryView
 import com.app.ui.views.CreatePairView
 import com.app.ui.views.JoinPairView
 import com.app.ui.views.LoginView
-import com.app.ui.views.MainView
 import com.app.ui.views.RegisterView
+import com.app.ui.views.basic.ActivityView
+import com.app.ui.views.basic.MainView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
 enum class Nav(val route: String) {
     // Основные
     Main("main"),
-    Likes("likes"),
+    Activity("activity"),
     Stats("stats"),
     Profile("profile"),
 
@@ -52,11 +53,19 @@ fun AppNavigation() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Nav.Login.route) {
+        // Основные
         composable(Nav.Main.route) { MainView(navController) }
+        composable(Nav.Activity.route) { ActivityView(navController) }
+
+        // Авторизация
         composable(Nav.Login.route) { LoginView(navController) }
         composable(Nav.Register.route) { RegisterView(navController) }
+
+        // Пары
         composable(Nav.CreatePair.route) { CreatePairView(navController) }
         composable(Nav.JoinPair.route) { JoinPairView(navController) }
+
+        // Категории
         composable("category/{categoryId}") { backStackEntry ->
             val categoryId = backStackEntry.arguments?.getString("categoryId")
             CategoryView(navController, categoryId?.toIntOrNull() ?: 1)

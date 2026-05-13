@@ -1,8 +1,8 @@
-package com.app.ui.viewmodel
+package com.app.ui.viewmodel.basic
 
 import androidx.lifecycle.ViewModel
-import com.app.data.repositories.CategoryRepository
-import com.app.domain.models.CategoryModel
+import com.app.data.repositories.basic.CategoryRepository
+import com.app.domain.models.basic.CategoryModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

@@ -26,7 +26,6 @@ fun BaseView(
     currentRoute: String = Nav.Main.route,
     content: @Composable () -> Unit = {},
 ) {
-    println("=== Route Base: $currentRoute")
     Scaffold { innerPadding ->
         Column(
             modifier = modifier

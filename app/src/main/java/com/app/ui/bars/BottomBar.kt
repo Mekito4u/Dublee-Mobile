@@ -31,7 +31,6 @@ fun BottomBar(
     currentRoute: String = Nav.Main.route,
 ) {
     val myShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
-    println("=== Route Bottom: $currentRoute")
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -56,11 +55,11 @@ fun BottomBar(
         NavigationButton(
             modifier = Modifier.weight(0.25f),
             onClick = {
-                navController.navigate(Nav.Likes.route)
+                navController.navigate(Nav.Activity.route)
             },
             icon = Icons.Default.Favorite,
-            text = "Избранное",
-            isSelected = currentRoute == Nav.Likes.route
+            text = "Активность",
+            isSelected = currentRoute == Nav.Activity.route
         )
         NavigationButton(
             modifier = Modifier.weight(0.25f),
