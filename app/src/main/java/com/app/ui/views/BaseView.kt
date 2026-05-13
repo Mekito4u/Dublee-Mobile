@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.app.Nav
 import com.app.ui.bars.BottomBar
 import com.app.ui.bars.TopBar
 import com.app.ui.theme.MyCream
@@ -22,10 +23,10 @@ import com.app.ui.theme.MyCream
 fun BaseView(
     modifier: Modifier = Modifier,
     navController: NavController = rememberNavController(),
-    content: @Composable () -> Unit = {}
+    currentRoute: String = Nav.Main.route,
+    content: @Composable () -> Unit = {},
 ) {
-    val currentRoute = navController.currentDestination?.route ?: ""
-
+    println("=== Route Base: $currentRoute")
     Scaffold { innerPadding ->
         Column(
             modifier = modifier

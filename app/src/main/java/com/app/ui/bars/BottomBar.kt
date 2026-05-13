@@ -10,7 +10,6 @@ import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,9 +28,10 @@ import com.app.ui.theme.MyBrown
 @Composable
 fun BottomBar(
     navController: NavController = rememberNavController(),
-    currentRoute: String = "main"
+    currentRoute: String = Nav.Main.route,
 ) {
     val myShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
+    println("=== Route Bottom: $currentRoute")
     Row(
         modifier = Modifier
             .fillMaxWidth()

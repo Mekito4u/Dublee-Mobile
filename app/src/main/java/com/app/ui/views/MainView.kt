@@ -17,6 +17,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.app.Nav
 import com.app.ui.theme.MyText
 import com.app.ui.viewmodel.MainViewModel
 import com.app.ui.widgets.CategoryWidget
@@ -31,7 +32,9 @@ fun MainView(
 ) {
     val categoryList by viewModel.categoryList.collectAsStateWithLifecycle()
 
-    BaseView {
+    BaseView(
+        currentRoute = Nav.Main.route
+    ) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize(),
