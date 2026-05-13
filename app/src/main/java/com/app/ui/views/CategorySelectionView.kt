@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.Nav
-import com.app.domain.models.CategoryModel
+import com.app.domain.models.basic.CategoryModel
 import com.app.ui.theme.MyCream
 import com.app.ui.theme.MyBeige
 import com.app.ui.theme.MyButton
