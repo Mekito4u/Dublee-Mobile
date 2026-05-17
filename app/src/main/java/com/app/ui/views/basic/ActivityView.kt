@@ -41,50 +41,51 @@ fun ActivityView(
 
     BaseView(
         navController = navController,
-        currentRoute = Nav.Activity.route
-    ) {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            item {
-                MyText(
-                    modifier = Modifier.padding(top = 24.dp),
-                    text = "Недавняя активность:", style = typography.titleLarge,
-                    textAlign = TextAlign.Start
-                )
-            }
-            items(dataList) { item ->
-                when (item) {
-                    is LikeModel -> {
-                        val category = viewModel.getCategoryById(item.categoryId)
-                        LikeWidget(
-                            categoryName = category?.title ?: "Ошибка",
-                            time = formatTime(item.timestamp),
-                            icon = category?.icon ?: Icons.Default.Error
-                        ) {
-                            viewModel.deleteLike(item.id)
+        currentRoute = Nav.Activity.route,
+        content = {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                item {
+                    MyText(
+                        modifier = Modifier.padding(top = 24.dp),
+                        text = "Недавняя активность:", style = typography.titleLarge,
+                        textAlign = TextAlign.Start
+                    )
+                }
+                items(dataList) { item ->
+                    when (item) {
+                        is LikeModel -> {
+                            val category = viewModel.getCategoryById(item.categoryId)
+                            LikeWidget(
+                                categoryName = category?.title ?: "Ошибка",
+                                time = formatTime(item.timestamp),
+                                icon = category?.icon ?: Icons.Default.Error
+                            ) {
+                                viewModel.deleteLike(item.id)
+                            }
+                        }
+
+                        is MatchModel -> {
+                            val category = viewModel.getCategoryById(item.categoryId)
+                            MatchWidget(
+                                categoryName = category?.title ?: "Ошибка",
+                                time = formatTime(item.timestamp),
+                                icon = category?.icon ?: Icons.Default.Error
+                            )
                         }
                     }
-
-                    is MatchModel -> {
-                        val category = viewModel.getCategoryById(item.categoryId)
-                        MatchWidget(
-                            categoryName = category?.title ?: "Ошибка",
-                            time = formatTime(item.timestamp),
-                            icon = category?.icon ?: Icons.Default.Error
-                        )
-                    }
+                }
+                item {
+                    Spacer(
+                        modifier = Modifier
+                            .height(0.dp)
+                    )
                 }
             }
-            item {
-                Spacer(
-                    modifier = Modifier
-                        .height(0.dp)
-                )
-            }
         }
-    }
+    )
 }

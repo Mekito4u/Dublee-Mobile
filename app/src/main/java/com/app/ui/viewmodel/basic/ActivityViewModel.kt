@@ -11,10 +11,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class ActivityViewModel() : ViewModel() {
-    val likeRepository = LikeRepository()
-    val matchRepository = MatchRepository()
-    val categoryRepository = CategoryRepository()
-
+    private val likeRepository = LikeRepository()
+    private val matchRepository = MatchRepository()
+    private val categoryRepository = CategoryRepository()
     private val _dataList = MutableStateFlow(emptyList<Any>())
     val dataList = _dataList.asStateFlow()
 

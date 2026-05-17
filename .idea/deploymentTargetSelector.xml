@@ -4,19 +4,22 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2026-05-12T14:32:02.297232100Z">
+        <DropdownSelection timestamp="2026-05-14T17:01:47.728080200Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\epifa\.android\avd\Pixel_4a.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=R5CWA0ZFJVB" />
             </handle>
           </Target>
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="LoginScreen">
+      <SelectionState runConfigName="BaseView">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="BaseView">
+      <SelectionState runConfigName="ProfileView">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="PairView">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 fun MyText(
     modifier: Modifier = Modifier,
     text: String = "Hello",
-    style: TextStyle = typography.headlineLarge,
+    style: TextStyle = typography.headlineMedium,
     textAlign: TextAlign = TextAlign.Center,
     color: Color = Color.Black
 ) {

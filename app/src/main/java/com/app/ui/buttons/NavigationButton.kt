@@ -5,9 +5,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,7 +33,8 @@ fun NavigationButton(
     icon: ImageVector = Icons.Default.Home,
     text: String? = "Главная",
     isSelected: Boolean = false,
-    backgroundColor: Color = MyBeige
+    backgroundColor: Color = MyBeige,
+    shape: CornerBasedShape = shapes.large
 ) {
     val color = if (isSelected) {
         MyCream
@@ -42,6 +45,8 @@ fun NavigationButton(
     MyButton(
         modifier = modifier.fillMaxSize(),
         onClick = onClick,
+        shape = shape,
+        isBordered = false,
         content = {
             Column(
                 modifier = Modifier.fillMaxWidth(),

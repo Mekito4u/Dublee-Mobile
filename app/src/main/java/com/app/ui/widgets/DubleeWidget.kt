@@ -16,7 +16,7 @@ fun DubleeWidget() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 8.dp, bottom = 8.dp, start = 28.dp),
+            .padding(horizontal = 32.dp, vertical = 8.dp),
         contentAlignment = Alignment.CenterStart
     ) {
         MyText(

@@ -23,9 +23,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.app.ui.theme.MyBeige
 import com.app.ui.theme.MyBrown
 import com.app.ui.theme.MyButton
+import com.app.ui.theme.MyCream
 import com.app.ui.theme.MyRed
 import com.app.ui.theme.MyText
 
@@ -51,7 +51,7 @@ fun LikeWidget(
                 color = MyBrown,
                 shape = shapes.large
             ),
-        color = MyBeige,
+        color = MyCream,
     ) {
         Column(
         ) {

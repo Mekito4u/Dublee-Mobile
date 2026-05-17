@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.app.ui.theme.MyBeige
+import com.app.ui.theme.MyBrown
 
 @Preview
 @Composable
@@ -29,7 +29,7 @@ fun NoAccountWidget(
         Text(
             text = "Регистрация",
             style = myStyle,
-            color = MyBeige,
+            color = MyBrown,
             modifier = modifier.clickable {
                 Log.d("Navigation", "switch to register")
                 navController.navigate("register")

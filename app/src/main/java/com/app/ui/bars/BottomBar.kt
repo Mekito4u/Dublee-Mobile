@@ -3,10 +3,10 @@ package com.app.ui.bars
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
@@ -29,55 +29,63 @@ import com.app.ui.theme.MyBrown
 fun BottomBar(
     navController: NavController = rememberNavController(),
     currentRoute: String = Nav.Main.route,
+    isVisible: Boolean = true
 ) {
     val myShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(shape = myShape)
-            .background(MyBeige)
-            .border(
-                width = 1.dp,
-                color = MyBrown,
-                shape = myShape
-            ),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        NavigationButton(
-            modifier = Modifier.weight(0.25f),
-            onClick = {
-                navController.navigate(Nav.Main.route)
-            },
-            icon = Icons.Default.Home,
-            text = "Главная",
-            isSelected = currentRoute == Nav.Main.route
-        )
-        NavigationButton(
-            modifier = Modifier.weight(0.25f),
-            onClick = {
-                navController.navigate(Nav.Activity.route)
-            },
-            icon = Icons.Default.Favorite,
-            text = "Активность",
-            isSelected = currentRoute == Nav.Activity.route
-        )
-        NavigationButton(
-            modifier = Modifier.weight(0.25f),
-            onClick = {
-                navController.navigate(Nav.Stats.route)
-            },
-            icon = Icons.Default.Analytics,
-            text = "Статистика",
-            isSelected = currentRoute == Nav.Stats.route
-        )
-        NavigationButton(
-            modifier = Modifier.weight(0.25f),
-            onClick = {
-                navController.navigate(Nav.Profile.route)
-            },
-            icon = Icons.Default.Person,
-            text = "Профиль",
-            isSelected = currentRoute == Nav.Profile.route
-        )
+
+    if (isVisible){
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(shape = myShape)
+                .background(MyBeige)
+                .border(
+                    width = 1.dp,
+                    color = MyBrown,
+                    shape = myShape
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            NavigationButton(
+                modifier = Modifier.weight(0.25f),
+                onClick = {
+                    navController.navigate(Nav.Main.route)
+                },
+                icon = Icons.Default.Home,
+                text = "Главная",
+                isSelected = currentRoute == Nav.Main.route
+            )
+            NavigationButton(
+                modifier = Modifier.weight(0.25f),
+                onClick = {
+                    navController.navigate(Nav.Activity.route)
+                },
+                icon = Icons.Default.Favorite,
+                text = "Активность",
+                isSelected = currentRoute == Nav.Activity.route
+            )
+
+            Spacer(modifier = Modifier.weight(0.25f))
+
+//        NavigationButton(
+//            modifier = Modifier.weight(0.25f),
+//            onClick = {
+//                navController.navigate(Nav.Stats.route)
+//            },
+//            icon = Icons.Default.Analytics,
+//            text = "Статистика",
+//            isSelected = currentRoute == Nav.Stats.route
+//        )
+
+            NavigationButton(
+                modifier = Modifier.weight(0.25f),
+                onClick = {
+                    navController.navigate(Nav.Profile.route)
+                },
+                icon = Icons.Default.Person,
+                text = "Профиль",
+                isSelected = currentRoute == Nav.Profile.route
+            )
+        }
     }
 }

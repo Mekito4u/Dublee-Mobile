@@ -60,4 +60,5 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 }

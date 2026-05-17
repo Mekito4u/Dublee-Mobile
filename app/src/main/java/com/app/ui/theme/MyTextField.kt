@@ -1,6 +1,7 @@
 package com.app.ui.theme
 
 import androidx.compose.material3.MaterialTheme.shapes
+import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -21,7 +22,7 @@ fun MyTextField(
         modifier = modifier,
         value = value,
         onValueChange = onValueChange,
-        label = { Text(prefix) },
+        label = { MyText(text = prefix) },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = backgroundColor,
             unfocusedContainerColor = backgroundColor,
@@ -29,6 +30,6 @@ fun MyTextField(
             unfocusedIndicatorColor = Color.Transparent,
             disabledIndicatorColor = Color.Transparent,
             errorIndicatorColor = Color.Transparent
-        )
+        ),
     )
 }

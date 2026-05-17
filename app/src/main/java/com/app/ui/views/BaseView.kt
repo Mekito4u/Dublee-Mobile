@@ -10,13 +10,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.Nav
 import com.app.ui.bars.BottomBar
 import com.app.ui.bars.TopBar
-import com.app.ui.theme.MyCream
+import com.app.ui.theme.MyBeige
 
 @Preview
 @Composable
@@ -24,14 +25,18 @@ fun BaseView(
     modifier: Modifier = Modifier,
     navController: NavController = rememberNavController(),
     currentRoute: String = Nav.Main.route,
+    isVisibleTop: Boolean = false,
+    isVisibleBottom: Boolean = true,
+    background: Color = MyBeige,
     content: @Composable () -> Unit = {},
 ) {
-    Scaffold { innerPadding ->
+    Scaffold(
+    ) { innerPadding ->
         Column(
             modifier = modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(MyCream)
+                .background(background)
         ) {
             // Верх 10%
             Box(
@@ -40,7 +45,7 @@ fun BaseView(
                     .weight(0.1f),
                 contentAlignment = Alignment.Center
             ) {
-                TopBar(navController)
+                TopBar(navController, isVisible = isVisibleTop)
             }
 
             // Контент 80%
@@ -60,7 +65,7 @@ fun BaseView(
                     .weight(0.1f),
                 contentAlignment = Alignment.Center
             ) {
-                BottomBar(navController, currentRoute)
+                BottomBar(navController, currentRoute, isVisible = isVisibleBottom)
             }
         }
     }

@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.app.ui.theme.MyBeige
+import com.app.ui.theme.MyBrown
 
 @Preview
 @Composable
@@ -29,7 +30,7 @@ fun HaveAccountWidget(
         Text(
             text = "Войти",
             style = myStyle,
-            color = MyBeige,
+            color = MyBrown,
             modifier = Modifier.clickable {
                 Log.d("Navigation", "switch to login")
                 navController.navigate("login")
