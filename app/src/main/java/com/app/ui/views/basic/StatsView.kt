@@ -17,7 +17,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.app.Nav
 import com.app.ui.theme.MyText
 import com.app.ui.viewmodel.basic.MainViewModel
 import com.app.ui.views.BaseView
@@ -34,45 +33,45 @@ fun StatsView(
     val categoryList by viewModel.categoryList.collectAsStateWithLifecycle()
 
     BaseView(
-        currentRoute = Nav.Main.route
-    ) {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            item { DubleeWidget() }
-            item {
-                Spacer(
-                    modifier = Modifier
-                        .height(64.dp)
-                )
-            }
-            item { DubleeIconWidget() }
-            item {
-                Spacer(
-                    modifier = Modifier
-                        .height(64.dp)
-                )
-            }
-            item { MyText(text = "Выберите категорию:", style = typography.titleLarge) }
-            items(categoryList) { item ->
-                CategoryWidget(
-                    title = item.title,
-                    description = item.description,
-                    icon = item.icon,
-                    onClicked = {
-                        navController.navigate("category/${item.id}")
-                    }
-                )
-            }
-            item {
-                Spacer(
-                    modifier = Modifier
-                        .height(0.dp)
-                )
+        content = {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                item { DubleeWidget() }
+                item {
+                    Spacer(
+                        modifier = Modifier
+                            .height(64.dp)
+                    )
+                }
+                item { DubleeIconWidget() }
+                item {
+                    Spacer(
+                        modifier = Modifier
+                            .height(64.dp)
+                    )
+                }
+                item { MyText(text = "Выберите категорию:", style = typography.titleLarge) }
+                items(categoryList) { item ->
+                    CategoryWidget(
+                        title = item.title,
+                        description = item.description,
+                        icon = item.icon,
+                        onClicked = {
+                            navController.navigate("category/${item.id}")
+                        }
+                    )
+                }
+                item {
+                    Spacer(
+                        modifier = Modifier
+                            .height(0.dp)
+                    )
+                }
             }
         }
-    }
+    )
 }
