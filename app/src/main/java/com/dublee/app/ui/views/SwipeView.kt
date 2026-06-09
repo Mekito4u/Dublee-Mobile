@@ -55,7 +55,7 @@ fun SwipeView(
 
                 item { }
 
-                if (currentIndex.value < options.value.size - 1) {
+                if (currentIndex.value != -1) {
                     item {
                         InfoWidget(
                             iconSize = 128.dp,

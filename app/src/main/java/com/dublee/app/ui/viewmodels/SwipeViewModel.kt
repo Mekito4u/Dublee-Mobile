@@ -43,8 +43,12 @@ class SwipeViewModel(
     }
 
     fun nextOption() {
-        _currentIndex.value += 1
-        setCurrentOption(_currentIndex.value)
+        if (_currentIndex.value + 1 < _options.value.size) {
+            _currentIndex.value += 1
+            setCurrentOption(_currentIndex.value)
+        } else {
+            _currentIndex.value = -1
+        }
     }
 
     fun likeOption(optionId: Int) {

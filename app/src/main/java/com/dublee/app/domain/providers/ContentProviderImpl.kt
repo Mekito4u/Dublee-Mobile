@@ -18,6 +18,7 @@ interface OptionProvider {
     fun getOptionsByCategory(id: Int): List<OptionModel>
     fun getOptionIcon(id: Int): ImageVector
     fun getOption(id: Int): OptionModel
+    fun getOptionsSize(): Int
 }
 
 
@@ -41,5 +42,8 @@ class ContentProviderImpl(
     override fun getOptionIcon(id: Int) = OptionIconMapper.getIcon(id)
     override fun getOption(id: Int): OptionModel {
         return optionRepository.getOptionById(id) ?: OptionModel.empty()
+    }
+    override fun getOptionsSize(): Int {
+        return optionRepository.getOptionsSize()
     }
 }

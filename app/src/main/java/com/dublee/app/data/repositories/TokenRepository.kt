@@ -16,7 +16,7 @@ class TokenRepository(
     private val context: Context
 ) {
     private val dataStore = context.tokenDataStore
-    private val TOKEN_KEY = stringPreferencesKey("jwt_token")
+    private val TOKEN_KEY = stringPreferencesKey("fcm_token")
 
     val tokenFlow: Flow<String?> = dataStore.data.map { preferences ->
         preferences[TOKEN_KEY]
