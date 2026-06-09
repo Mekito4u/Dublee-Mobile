@@ -1,4 +1,4 @@
-package com.app.ui.widgets
+package com.dublee.app.ui.views.utils.widgets
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,10 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.app.ui.theme.MyCream
-import com.app.ui.theme.MyIconButton
-import com.app.ui.theme.MyText
+import com.dublee.app.ui.views.utils.theme.MyCream
+import com.dublee.app.ui.views.utils.theme.MyIconButton
+import com.dublee.app.ui.views.utils.theme.MyText
 
 data class ButtonItem(
     val text: String,
@@ -25,6 +26,7 @@ data class ButtonItem(
     val onClick: () -> Unit
 )
 
+@Preview
 @Composable
 fun MyButtonsBlockWidget(
     title: String = "title",

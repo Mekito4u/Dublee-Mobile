@@ -1,4 +1,4 @@
-package com.app.ui.widgets
+package com.dublee.app.ui.views.utils.widgets
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.app.ui.theme.MyPink
+import com.dublee.app.ui.views.utils.theme.MyPink
 
 
 @Preview

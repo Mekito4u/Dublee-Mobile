@@ -1,4 +1,4 @@
-package com.app.ui.views.basic
+package com.dublee.app.ui.views
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
@@ -17,12 +17,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.app.ui.theme.MyText
-import com.app.ui.viewmodel.basic.MainViewModel
-import com.app.ui.views.BaseView
-import com.app.ui.widgets.CategoryWidget
-import com.app.ui.widgets.DubleeIconWidget
-import com.app.ui.widgets.DubleeWidget
+import com.dublee.app.ui.viewmodels.MainViewModel
+import com.dublee.app.ui.views.utils.theme.MyText
+import com.dublee.app.ui.views.utils.widgets.DubleeIconWidget
+import com.dublee.app.ui.views.utils.widgets.DubleeWidget
+import com.dublee.app.ui.views.utils.widgets.InfoWidget
 
 @Preview
 @Composable
@@ -56,10 +55,10 @@ fun StatsView(
                 }
                 item { MyText(text = "Выберите категорию:", style = typography.titleLarge) }
                 items(categoryList) { item ->
-                    CategoryWidget(
+                    InfoWidget(
                         title = item.title,
                         description = item.description,
-                        icon = item.icon,
+                        icon = viewModel.getCategoryIcon(item.iconId),
                         onClicked = {
                             navController.navigate("category/${item.id}")
                         }

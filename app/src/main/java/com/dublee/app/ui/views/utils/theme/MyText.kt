@@ -1,4 +1,4 @@
-package com.app.ui.theme
+package com.dublee.app.ui.views.utils.theme
 
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Text
@@ -12,8 +12,8 @@ import androidx.compose.ui.tooling.preview.Preview
 @Preview
 @Composable
 fun MyText(
-    modifier: Modifier = Modifier,
     text: String = "Hello",
+    modifier: Modifier = Modifier,
     style: TextStyle = typography.headlineMedium,
     textAlign: TextAlign = TextAlign.Center,
     color: Color = Color.Black

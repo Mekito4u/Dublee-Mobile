@@ -1,8 +1,9 @@
-package com.app.ui.widgets
+package com.dublee.app.ui.views.utils.widgets
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -18,21 +19,25 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.app.ui.theme.MyBrown
-import com.app.ui.theme.MyGreen
-import com.app.ui.theme.MyText
+import com.dublee.app.ui.views.utils.theme.MyBrown
+import com.dublee.app.ui.views.utils.theme.MyButton
+import com.dublee.app.ui.views.utils.theme.MyCream
+import com.dublee.app.ui.views.utils.theme.MyRed
+import com.dublee.app.ui.views.utils.theme.MyText
 
 @Preview
 @Composable
-fun MatchWidget(
+fun LikeWidget(
     categoryName: String = "Category",
     optionName: String = "option",
     time: String = "time",
     icon: ImageVector = Icons.Default.Home,
+    onClicked: () -> Unit = {}
 ) {
     Surface(
         shape = shapes.large,
@@ -47,10 +52,9 @@ fun MatchWidget(
                 color = MyBrown,
                 shape = shapes.large
             ),
-        color = MyGreen,
+        color = MyCream,
     ) {
-        Column(
-        ) {
+        Column {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -65,10 +69,11 @@ fun MatchWidget(
                         .fillMaxSize(),
                     imageVector = icon,
                     contentDescription = "like",
+                    tint = Color.Black
                 )
                 MyText(
                     modifier = Modifier.weight(0.3f),
-                    text = "Мэтч!",
+                    text = "Лайк",
                     textAlign = TextAlign.Start,
                     style = typography.headlineSmall
                 )
@@ -96,7 +101,14 @@ fun MatchWidget(
 
                 Spacer(modifier = Modifier.weight(0.1f))
 
-                Spacer(modifier = Modifier.weight(0.2f))
+                MyButton(
+                    modifier = Modifier.weight(0.2f),
+                    height = 48.dp,
+                    text = "-",
+                    backgroundColor = MyRed,
+                    contentPadding = PaddingValues(4.dp),
+                    onClick = onClicked
+                )
             }
         }
     }

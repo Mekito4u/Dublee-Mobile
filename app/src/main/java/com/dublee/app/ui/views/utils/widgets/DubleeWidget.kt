@@ -1,4 +1,4 @@
-package com.app.ui.widgets
+package com.dublee.app.ui.views.utils.widgets
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.app.ui.theme.MyText
+import com.dublee.app.ui.views.utils.theme.MyText
 
 @Preview
 @Composable

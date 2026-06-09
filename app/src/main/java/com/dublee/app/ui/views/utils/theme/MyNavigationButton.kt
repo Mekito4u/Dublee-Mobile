@@ -1,4 +1,4 @@
-package com.app.ui.buttons
+package com.dublee.app.ui.views.utils.theme
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,21 +20,17 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.app.ui.theme.MyBeige
-import com.app.ui.theme.MyBrown
-import com.app.ui.theme.MyButton
-import com.app.ui.theme.MyCream
 
 @Preview
 @Composable
-fun NavigationButton(
+fun MyNavigationButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     icon: ImageVector = Icons.Default.Home,
     text: String? = "Главная",
     isSelected: Boolean = false,
     backgroundColor: Color = MyBeige,
-    shape: CornerBasedShape = shapes.large
+    shape: CornerBasedShape = shapes.large,
 ) {
     val color = if (isSelected) {
         MyCream

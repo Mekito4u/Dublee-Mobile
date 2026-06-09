@@ -1,4 +1,4 @@
-package com.app.ui.theme
+package com.dublee.app.ui.views.utils.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

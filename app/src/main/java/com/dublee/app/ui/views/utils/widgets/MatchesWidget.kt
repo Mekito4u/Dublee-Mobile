@@ -1,9 +1,8 @@
-package com.app.ui.widgets
+package com.dublee.app.ui.views.utils.widgets
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -19,24 +18,22 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.app.ui.theme.MyBrown
-import com.app.ui.theme.MyButton
-import com.app.ui.theme.MyCream
-import com.app.ui.theme.MyRed
-import com.app.ui.theme.MyText
+import com.dublee.app.ui.views.utils.theme.MyBrown
+import com.dublee.app.ui.views.utils.theme.MyGreen
+import com.dublee.app.ui.views.utils.theme.MyText
 
 @Preview
 @Composable
-fun LikeWidget(
+fun MatchWidget(
     categoryName: String = "Category",
     optionName: String = "option",
     time: String = "time",
     icon: ImageVector = Icons.Default.Home,
-    onClicked: () -> Unit = {}
 ) {
     Surface(
         shape = shapes.large,
@@ -51,10 +48,9 @@ fun LikeWidget(
                 color = MyBrown,
                 shape = shapes.large
             ),
-        color = MyCream,
+        color = MyGreen,
     ) {
-        Column(
-        ) {
+        Column {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -69,10 +65,11 @@ fun LikeWidget(
                         .fillMaxSize(),
                     imageVector = icon,
                     contentDescription = "like",
+                    tint = Color.Black
                 )
                 MyText(
                     modifier = Modifier.weight(0.3f),
-                    text = "Лайк",
+                    text = "Мэтч!",
                     textAlign = TextAlign.Start,
                     style = typography.headlineSmall
                 )
@@ -100,13 +97,7 @@ fun LikeWidget(
 
                 Spacer(modifier = Modifier.weight(0.1f))
 
-                MyButton(
-                    modifier = Modifier.weight(0.2f),
-                    text = "-",
-                    backgroundColor = MyRed,
-                    contentPadding = PaddingValues(4.dp),
-                    onClick = onClicked
-                )
+                Spacer(modifier = Modifier.weight(0.2f))
             }
         }
     }

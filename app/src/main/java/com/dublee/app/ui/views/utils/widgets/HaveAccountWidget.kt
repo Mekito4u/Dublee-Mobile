@@ -1,21 +1,21 @@
-package com.app.ui.widgets
+package com.dublee.app.ui.views.utils.widgets
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.app.ui.theme.MyBrown
+import com.dublee.app.Nav
+import com.dublee.app.ui.views.utils.theme.MyBrown
+import com.dublee.app.ui.views.utils.theme.MyText
 
 @Preview
 @Composable
-fun NoAccountWidget(
+fun HaveAccountWidget(
     navController: NavController = rememberNavController(),
     modifier: Modifier = Modifier
 ) {
@@ -23,16 +23,18 @@ fun NoAccountWidget(
 
     Column(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("У вас нет аккаунта?", style = myStyle)
-        Text(
-            text = "Регистрация",
+        MyText(
+            text = "У вас уже есть аккаунта?",
+            style = myStyle
+        )
+        MyText(
+            text = "Войти",
             style = myStyle,
             color = MyBrown,
-            modifier = modifier.clickable {
-                Log.d("Navigation", "switch to register")
-                navController.navigate("register")
+            modifier = Modifier.clickable {
+                navController.navigate(Nav.Login.route)
             }
         )
     }

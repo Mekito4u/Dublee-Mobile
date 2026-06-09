@@ -1,4 +1,4 @@
-package com.app.ui.widgets
+package com.dublee.app.ui.views.utils.widgets
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -13,17 +13,24 @@ import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.app.ui.theme.MyBrown
-import com.app.ui.theme.MyCream
-import com.app.ui.theme.MyText
+import com.dublee.app.ui.views.utils.theme.MyBrown
+import com.dublee.app.ui.views.utils.theme.MyCream
+import com.dublee.app.ui.views.utils.theme.MyText
 
 @Preview
 @Composable
-fun CategoryWidget(
+fun InfoWidget(
+    modifier: Modifier = Modifier,
+    iconSize: Dp = 36.dp,
+    iconAlign: Alignment.Horizontal = Alignment.Start,
     title: String = "title",
     description: String = "description",
     icon: ImageVector = Icons.Default.Home,
@@ -31,7 +38,7 @@ fun CategoryWidget(
 ) {
     Surface(
         shape = shapes.large,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(
                 start = 24.dp,
@@ -49,20 +56,24 @@ fun CategoryWidget(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             Icon(
-                modifier = Modifier.size(36.dp),
+                modifier = Modifier
+                    .size(iconSize)
+                    .align(iconAlign),
                 imageVector = icon,
-                contentDescription = "",
+                tint = Color.Black,
+                contentDescription = "icon",
             )
             MyText(
-                Modifier.fillMaxWidth(),
                 text = title,
+                modifier =Modifier.fillMaxWidth(),
             )
             MyText(
                 text = description,
-                style = typography.headlineSmall
+                style = typography.headlineSmall,
+                textAlign = TextAlign.Start
             )
         }
     }
