@@ -12,6 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.NotInterested
+import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -128,7 +129,27 @@ fun SwipeView(
                             Icon(
                                 modifier = Modifier.fillMaxSize(),
                                 imageVector = Icons.AutoMirrored.Filled.ExitToApp,
-                                contentDescription = "dislike",
+                                contentDescription = "exit",
+                                tint = Color.Black
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(24.dp))
+
+                        MyButton(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 24.dp)
+                                .height(96.dp),
+                            text = "Exit",
+                            onClick = {
+                                navController.navigate("swipe/${viewModel.categoryId}")
+                            }
+                        ) {
+                            Icon(
+                                modifier = Modifier.fillMaxSize(),
+                                imageVector = Icons.Default.RestartAlt,
+                                contentDescription = "restart",
                                 tint = Color.Black
                             )
                         }

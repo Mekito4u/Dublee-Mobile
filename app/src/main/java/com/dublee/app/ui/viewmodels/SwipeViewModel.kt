@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class SwipeViewModel(
-    private val categoryId: Int,
+    val categoryId: Int,
     contentProviderImpl: ContentProviderImpl,
     activityProviderImpl: ActivityProviderImpl,
     userProviderImpl: UserProviderImpl
