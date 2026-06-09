@@ -79,8 +79,10 @@ fun ActivityView(
 
                             is MatchModel -> {
                                 val category = viewModel.getCategory(item.categoryId)
+                                val option = viewModel.getOption(item.optionId)
                                 MatchWidget(
                                     categoryName = category.title,
+                                    optionName = option.title,
                                     time = formatTime(item.createdAt),
                                     icon = viewModel.getCategoryIcon(category.iconId)
                                 )

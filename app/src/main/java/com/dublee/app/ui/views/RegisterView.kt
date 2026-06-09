@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -117,7 +116,6 @@ fun RegisterView(
                     },
                     text = "Регистрация",
                     backgroundColor = MyBeige,
-                    modifier = Modifier.width(256.dp)
                 )
             }
         }
