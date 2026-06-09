@@ -1,4 +1,4 @@
-package com.app.domain.models.basic
+package com.dublee.app.domain.models
 
 data class PairModel(
     val id: Int,
