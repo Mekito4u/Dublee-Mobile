@@ -1,4 +1,4 @@
-package com.app.ui.views
+package com.dublee.app.ui.views
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,15 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.app.Nav
-import com.app.ui.bars.BottomBar
-import com.app.ui.bars.TopBar
-import com.app.ui.theme.MyBeige
+import com.dublee.app.Nav
+import com.dublee.app.ui.views.utils.bars.BottomBar
+import com.dublee.app.ui.views.utils.theme.MyBeige
 
-@Preview
 @Composable
 fun BaseView(
     modifier: Modifier = Modifier,
@@ -28,10 +25,15 @@ fun BaseView(
     isVisibleTop: Boolean = false,
     isVisibleBottom: Boolean = true,
     background: Color = MyBeige,
+    bottom: @Composable () -> Unit = {
+        BottomBar(navController, currentRoute)
+    },
+    top: @Composable () -> Unit = {
+
+    },
     content: @Composable () -> Unit = {},
 ) {
-    Scaffold(
-    ) { innerPadding ->
+    Scaffold { innerPadding ->
         Column(
             modifier = modifier
                 .fillMaxSize()
@@ -45,7 +47,9 @@ fun BaseView(
                     .weight(0.1f),
                 contentAlignment = Alignment.Center
             ) {
-                TopBar(navController, isVisible = isVisibleTop)
+                if(isVisibleTop){
+                    top()
+                }
             }
 
             // Контент 80%
@@ -65,7 +69,9 @@ fun BaseView(
                     .weight(0.1f),
                 contentAlignment = Alignment.Center
             ) {
-                BottomBar(navController, currentRoute, isVisible = isVisibleBottom)
+                if (isVisibleBottom) {
+                    bottom()
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.app.ui.views
+package com.dublee.app.ui.views
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,29 +13,31 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.app.Nav
-import com.app.ui.theme.MyBeige
-import com.app.ui.theme.MyButton
-import com.app.ui.theme.MyCream
-import com.app.ui.theme.MyRed
-import com.app.ui.theme.MyText
-import com.app.ui.theme.MyTextField
-import com.app.ui.viewmodel.basic.RegisterViewModel
-import com.app.ui.widgets.DubleeWidget
-import com.app.ui.widgets.HaveAccountWidget
+import com.dublee.app.Nav
+import com.dublee.app.ui.viewmodels.RegisterViewModel
+import com.dublee.app.ui.views.utils.theme.MyBeige
+import com.dublee.app.ui.views.utils.theme.MyButton
+import com.dublee.app.ui.views.utils.theme.MyCream
+import com.dublee.app.ui.views.utils.theme.MyRed
+import com.dublee.app.ui.views.utils.theme.MyText
+import com.dublee.app.ui.views.utils.theme.MyTextField
+import com.dublee.app.ui.views.utils.widgets.DubleeWidget
+import com.dublee.app.ui.views.utils.widgets.HaveAccountWidget
+import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
-@Preview
+
 @Composable
 fun RegisterView(
     navController: NavController = rememberNavController(),
-    viewModel: RegisterViewModel = viewModel()
+    viewModel: RegisterViewModel = koinViewModel()
 ) {
+    val partner by viewModel.partner.collectAsStateWithLifecycle()
     var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var repeatPassword by remember { mutableStateOf("") }
@@ -43,9 +45,12 @@ fun RegisterView(
 
     BaseView(
         navController = navController,
-        currentRoute = Nav.Login.route,
+        currentRoute = Nav.Register.route,
         background = MyBeige,
-        isVisibleBottom = false,
+        isVisibleBottom = true,
+        bottom = {
+            HaveAccountWidget(navController)
+        },
         content = {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -53,8 +58,6 @@ fun RegisterView(
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 DubleeWidget()
-
-                Spacer(modifier = Modifier.height(32.dp))
 
                 if (errorMsg != null) {
                     MyText(
@@ -73,8 +76,6 @@ fun RegisterView(
                     prefix = "Логин",
                     backgroundColor = MyCream,
                     modifier = Modifier
-                        .width(256.dp)
-                        .height(96.dp)
                 )
 
                 MyTextField(
@@ -83,8 +84,6 @@ fun RegisterView(
                     prefix = "Пароль",
                     backgroundColor = MyCream,
                     modifier = Modifier
-                        .width(256.dp)
-                        .height(96.dp)
                 )
 
                 MyTextField(
@@ -93,20 +92,33 @@ fun RegisterView(
                     prefix = "Повтор",
                     backgroundColor = MyCream,
                     modifier = Modifier
-                        .width(256.dp)
-                        .height(96.dp)
                 )
 
-                //Spacer(modifier = Modifier.height(32.dp))
 
                 MyButton(
-                    onClick = { navController.navigate(Nav.Main.route) },
+                    onClick = {
+                        if (viewModel.checkPasswords(
+                                password1 = password,
+                                password2 = repeatPassword
+                            )
+                        ) {
+                            viewModel.trySignUp(login, password) {
+                                viewModel.viewModelScope.launch {
+                                    viewModel.loadUserAndPartner()
+                                    if (partner.id > 0){
+                                        navController.navigate(Nav.Main.route)
+                                    }
+                                    else{
+                                        navController.navigate(Nav.Pair.route)
+                                    }
+                                }
+                            }
+                        }
+                    },
                     text = "Регистрация",
                     backgroundColor = MyBeige,
                     modifier = Modifier.width(256.dp)
                 )
-
-                HaveAccountWidget(navController)
             }
         }
     )
