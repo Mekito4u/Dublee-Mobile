@@ -1,50 +1,44 @@
-package com.app.data.repositories.basic
+package com.dublee.app.data.repositories
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Explore
-import androidx.compose.material.icons.filled.Fastfood
-import androidx.compose.material.icons.filled.Games
-import androidx.compose.material.icons.filled.Movie
-import androidx.compose.material.icons.filled.Weekend
-import com.app.domain.models.basic.CategoryModel
+import com.dublee.app.domain.models.CategoryModel
 
-class CategoryRepository {
+open class CategoryRepository {
     private val categoryList = listOf(
         CategoryModel(
-            0,
+            1,
             "Еда",
             "Выбирайте блюдо на ужин: от пиццы до суши",
-            Icons.Default.Fastfood
-        ),
-        CategoryModel(
-            1,
-            "Фильм",
-            "Найдите фильм, который хотите смотреть оба",
-            Icons.Default.Movie
+            0
         ),
         CategoryModel(
             2,
-            "Игра",
-            "Настолки, видеоигры - выбирайте досуг для двоих",
-            Icons.Default.Games
+            "Фильм",
+            "Найдите фильм, который хотите смотреть оба",
+            1
         ),
         CategoryModel(
             3,
-            "Погулять",
-            "Парк, кафе или музей - решите вместе",
-            Icons.Default.Explore
+            "Игра",
+            "Настолки, видеоигры - выбирайте досуг для двоих",
+            2
         ),
         CategoryModel(
             4,
+            "Погулять",
+            "Парк, кафе или музей - решите вместе",
+            3
+        ),
+        CategoryModel(
+            5,
             "Досуг",
             "Всё для отдыха: книги, музыка, хобби",
-            Icons.Default.Weekend
+            4
         )
     )
 
     fun getCategories(): List<CategoryModel> = categoryList
 
     fun getCategoryById(id: Int): CategoryModel? {
-        return categoryList.find { it.id == id }
+        return categoryList.firstOrNull { it.id == id }
     }
 }
