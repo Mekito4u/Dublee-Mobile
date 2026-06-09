@@ -1,4 +1,4 @@
-package com.app.domain.util
+package com.dublee.app.domain.util
 
 import java.text.SimpleDateFormat
 import java.util.Date
