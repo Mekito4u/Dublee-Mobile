@@ -5,13 +5,28 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import com.dublee.app.data.repositories.OptionRepository
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-class MyFirebaseMessagingService : FirebaseMessagingService() {
+class MyFirebaseMessagingService() : FirebaseMessagingService() {
+    private val optionRepository by lazy { OptionRepository() }
+
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         val title = remoteMessage.notification?.title ?: "Dublee"
-        val body = remoteMessage.notification?.body ?: "Новый мэтч!"
+        var body = remoteMessage.notification?.body ?: "Новый мэтч!"
+
+        val regex = Regex("\\d+")
+        val matchResult = regex.find(body)
+        if (matchResult != null) {
+            val optionId = matchResult.value.toIntOrNull()
+            optionId?.let {
+                val option = optionRepository.getOptionById(it)
+                val optionTitle = option?.title ?: it.toString()
+                body = body.replace(it.toString(), optionTitle)
+            }
+        }
+
         showNotification(title, body)
     }
 
