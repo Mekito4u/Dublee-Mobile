@@ -6,13 +6,21 @@ import android.app.NotificationManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.dublee.app.data.repositories.OptionRepository
+import com.dublee.app.data.repositories.SettingsRepository
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 class MyFirebaseMessagingService() : FirebaseMessagingService() {
     private val optionRepository by lazy { OptionRepository() }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        val areNotificationsEnabled = runBlocking {
+            SettingsRepository(applicationContext).isNotificationsEnabled.first()
+        }
+        if (!areNotificationsEnabled) return
+
         val title = remoteMessage.notification?.title ?: "Dublee"
         var body = remoteMessage.notification?.body ?: "Новый мэтч!"
 
