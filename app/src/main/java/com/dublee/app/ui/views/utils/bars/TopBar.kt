@@ -12,19 +12,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.dublee.app.Nav
-import com.dublee.app.ui.viewmodels.ProfileViewModel
 import com.dublee.app.ui.views.utils.theme.MyBrown
 import com.dublee.app.ui.views.utils.theme.MyNavigationButton
-import kotlinx.coroutines.launch
 
 @Composable
 fun TopBar(
     navController: NavController = rememberNavController(),
-    viewModel: ProfileViewModel
+    onClickLogout: () -> Unit
 ) {
     val myShape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
 
@@ -49,9 +46,7 @@ fun TopBar(
                     shape = myShape
                 ),
             onClick = {
-                viewModel.viewModelScope.launch {
-                    viewModel.clearToken()
-                }
+                onClickLogout()
                 navController.navigate(Nav.Login.route)
             },
             icon = Icons.Default.Logout,

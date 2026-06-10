@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -23,6 +24,7 @@ import com.dublee.app.ui.views.utils.widgets.ButtonItem
 import com.dublee.app.ui.views.utils.widgets.DubleeWidget
 import com.dublee.app.ui.views.utils.widgets.MyButtonsBlockWidget
 import com.dublee.app.ui.views.utils.widgets.PairInfoWidget
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -33,12 +35,13 @@ fun ProfileView(
 ) {
     val user by viewModel.user.collectAsStateWithLifecycle()
     val partner by viewModel.partner.collectAsStateWithLifecycle()
+    val scope = rememberCoroutineScope()
 
     BaseView(
         navController = navController,
         currentRoute = Nav.Profile.route,
         isVisibleTop = true,
-        top = { TopBar(navController, viewModel) },
+        top = { TopBar(navController, { scope.launch { viewModel.clearToken() } }) },
         background = MyBeige,
         content = {
             LazyColumn(

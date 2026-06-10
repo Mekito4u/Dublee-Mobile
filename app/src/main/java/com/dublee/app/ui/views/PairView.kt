@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,6 +35,7 @@ import com.dublee.app.domain.providers.UserProviderImpl
 import com.dublee.app.domain.usecases.PartnerSession
 import com.dublee.app.domain.usecases.UserSession
 import com.dublee.app.ui.viewmodels.PairViewModel
+import com.dublee.app.ui.views.utils.bars.TopBar
 import com.dublee.app.ui.views.utils.theme.MyBeige
 import com.dublee.app.ui.views.utils.theme.MyButton
 import com.dublee.app.ui.views.utils.theme.MyCream
@@ -93,13 +95,14 @@ fun PairView(
 
     val myCode by viewModel.myCode.collectAsStateWithLifecycle()
     var partnerCode by remember { mutableStateOf("") }
-
     val errorMsg by viewModel.errorMsg.collectAsStateWithLifecycle()
-
+    val scope = rememberCoroutineScope()
     BaseView(
         navController = navController,
         currentRoute = Nav.Pair.route,
         background = MyBeige,
+        isVisibleTop = true,
+        top = { TopBar(navController, { scope.launch { viewModel.clearToken() } }) },
         isVisibleBottom = hasPair,
         content = {
             Column(

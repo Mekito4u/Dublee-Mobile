@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.dublee.app.domain.providers.PairManager
 import com.dublee.app.domain.providers.PairProviderImpl
 import com.dublee.app.domain.providers.Session
+import com.dublee.app.domain.providers.UserAuth
 import com.dublee.app.domain.providers.UserIconProvider
 import com.dublee.app.domain.providers.UserProviderImpl
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,6 +18,7 @@ class PairViewModel(
 ) : ViewModel(),
     Session by userProviderImpl,
     UserIconProvider by userProviderImpl,
+    UserAuth by userProviderImpl,
     PairManager by pairProviderImpl {
     private val _errorMsg = MutableStateFlow<String?>(null)
     val errorMsg = _errorMsg.asStateFlow()
