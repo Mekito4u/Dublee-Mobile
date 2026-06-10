@@ -3,7 +3,6 @@ package com.dublee.app.ui.views.utils.bars
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -45,7 +44,7 @@ fun BottomBar(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         MyNavigationButton(
-            modifier = Modifier.weight(0.25f),
+            modifier = Modifier.weight(0.33f),
             onClick = {
                 navController.navigate(Nav.Main.route)
             },
@@ -54,7 +53,7 @@ fun BottomBar(
             isSelected = currentRoute == Nav.Main.route
         )
         MyNavigationButton(
-            modifier = Modifier.weight(0.25f),
+            modifier = Modifier.weight(0.33f),
             onClick = {
                 navController.navigate(Nav.Activity.route)
             },
@@ -63,7 +62,7 @@ fun BottomBar(
             isSelected = currentRoute == Nav.Activity.route
         )
 
-        Spacer(modifier = Modifier.weight(0.25f))
+        //Spacer(modifier = Modifier.weight(0.25f))
 
 //        NavigationButton(
 //            modifier = Modifier.weight(0.25f),
@@ -76,7 +75,7 @@ fun BottomBar(
 //        )
 
         MyNavigationButton(
-            modifier = Modifier.weight(0.25f),
+            modifier = Modifier.weight(0.33f),
             onClick = {
                 navController.navigate(Nav.Profile.route)
             },
