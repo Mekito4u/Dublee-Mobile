@@ -10,9 +10,3 @@ data class UserResponse(
     val iconId: Int,
     val colorId: Int
 )
-
-@Serializable
-data class LoginResponse(
-    val token: String,
-    val user: UserResponse
-)

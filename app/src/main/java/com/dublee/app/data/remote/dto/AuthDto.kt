@@ -2,6 +2,13 @@ package com.dublee.app.data.remote.dto
 
 import kotlinx.serialization.Serializable
 
+
+@Serializable
+data class AuthResponse(
+    val token: String,
+    val user: UserResponse
+)
+
 @Serializable
 data class RegisterRequest(
     val login: String,
