@@ -1,118 +1,158 @@
 package com.dublee.app.data.repositories
 
+import com.dublee.app.data.remote.dto.AuthResponse
+import com.dublee.app.data.remote.dto.ErrorResponse
 import com.dublee.app.data.remote.dto.LoginRequest
 import com.dublee.app.data.remote.dto.RegisterRequest
+import com.dublee.app.data.remote.dto.UserResponse
 import com.dublee.app.data.remote.services.AuthApiService
 import com.dublee.app.data.remote.services.UserApiService
 import com.dublee.app.domain.models.UserModel
-import com.dublee.app.domain.usecases.PartnerSession
-import com.dublee.app.domain.usecases.UserSession
-import kotlinx.coroutines.flow.first
+import io.ktor.client.call.body
+import io.ktor.http.HttpStatusCode
 
 open class UserRepository(
-    val userSession: UserSession,
-    val partnerSession: PartnerSession,
     val userApiService: UserApiService,
     val authApiService: AuthApiService,
     val tokenRepository: TokenRepository
 ) {
-    suspend fun register(login: String, password: String): Boolean {
-        return try {
-            val response = authApiService.register(RegisterRequest(login, password))
-            val token = response.token
-            tokenRepository.saveToken(response.token)
-            loadSession(
-                UserModel(
-                    id = response.user.id,
-                    login = response.user.login,
-                    pairId = response.user.pairId,
-                    iconId = response.user.iconId,
-                    colorId = response.user.colorId
+    suspend fun register(login: String, password: String): Pair<UserModel?, String?> {
+        val response = authApiService.register(RegisterRequest(login, password))
+        when (response.status) {
+            HttpStatusCode.Created -> {
+                val authResponse = response.body<AuthResponse>()
+                tokenRepository.saveToken(authResponse.token)
+                val user = UserModel(
+                    id = authResponse.user.id,
+                    login = authResponse.user.login,
+                    pairId = authResponse.user.pairId,
+                    iconId = authResponse.user.iconId,
+                    colorId = authResponse.user.colorId
                 )
-            )
-            true
-        } catch (e: Exception) {
-            println("=== Error: ${e.message}")
-            e.printStackTrace()
-            return false
+                return user to null
+            }
+
+            else -> {
+                val errorMessage = runCatching {
+                    response.body<ErrorResponse>().message
+                }.getOrNull() ?: "Ошибка"
+
+                println("Ошибка: ${response.status}")
+
+                return null to errorMessage
+            }
         }
     }
 
-    suspend fun login(login: String, password: String): Boolean {
-        return try {
-            val response = authApiService.login(LoginRequest(login, password))
-            val token = response.token
-            tokenRepository.saveToken(token)
-            loadSession(
-                UserModel(
-                    id = response.user.id,
-                    login = response.user.login,
-                    pairId = response.user.pairId,
-                    iconId = response.user.iconId,
-                    colorId = response.user.colorId
+    suspend fun login(login: String, password: String): Pair<UserModel?, String?> {
+        val response = authApiService.login(LoginRequest(login, password))
+        when (response.status) {
+            HttpStatusCode.OK -> {
+                val authResponse = response.body<AuthResponse>()
+                tokenRepository.saveToken(authResponse.token)
+                val user = UserModel(
+                    id = authResponse.user.id,
+                    login = authResponse.user.login,
+                    pairId = authResponse.user.pairId,
+                    iconId = authResponse.user.iconId,
+                    colorId = authResponse.user.colorId
                 )
-            )
-            true
-        } catch (e: Exception) {
-            println("=== Error: ${e.message}")
-            e.printStackTrace()
-            return false
+                return user to null
+            }
+
+            else -> {
+                val errorMessage = runCatching {
+                    response.body<ErrorResponse>().message
+                }.getOrNull() ?: "Ошибка"
+
+                println("Ошибка: ${response.status}")
+
+                return null to errorMessage
+            }
         }
     }
 
-    suspend fun getMe() {
-        try {
-            val token = tokenRepository.getToken() ?: return
-            val response = userApiService.getMe(token)
-            loadSession(
-                UserModel(
-                    id = response.id,
-                    login = response.login,
-                    pairId = response.pairId,
-                    iconId = response.iconId,
-                    colorId = response.colorId
+    suspend fun getMe(): Pair<UserModel?, String?> {
+        val token = tokenRepository.getToken() ?: return null to "Токен не найден!"
+        val response = userApiService.getMe(token)
+        when (response.status) {
+            HttpStatusCode.OK -> {
+                val userResponse = response.body<UserResponse>()
+                val user = UserModel(
+                    id = userResponse.id,
+                    login = userResponse.login,
+                    pairId = userResponse.pairId,
+                    iconId = userResponse.iconId,
+                    colorId = userResponse.colorId
                 )
-            )
-        } catch (e: Exception) {
-            println("Update user failed: ${e.message}")
+                return user to null
+            }
+
+            else -> {
+                val errorMessage = runCatching {
+                    response.body<ErrorResponse>().message
+                }.getOrNull() ?: "Ошибка"
+
+                println("Ошибка: ${response.status}")
+
+                return null to errorMessage
+            }
         }
     }
 
-    suspend fun updateUser(iconId: Int, colorId: Int) {
-        try {
-            val token = tokenRepository.getToken() ?: return
-            userApiService.updateUser(iconId, colorId, token)
-            val currentUser = userSession.user.value
-            val updatedUser = currentUser.copy(iconId = iconId, colorId = colorId)
-            userSession.loadUser(updatedUser)
-        } catch (e: Exception) {
-            println("Update user failed: ${e.message}")
+    suspend fun getPartner(): Pair<UserModel?, String?> {
+        val token = tokenRepository.getToken() ?: return null to "Токен не найден!"
+        val response = userApiService.getPartner(token)
+        when (response.status) {
+            HttpStatusCode.OK -> {
+                val partnerResponse = response.body<UserResponse>()
+                val partner = UserModel(
+                    id = partnerResponse.id,
+                    login = partnerResponse.login,
+                    pairId = partnerResponse.pairId,
+                    iconId = partnerResponse.iconId,
+                    colorId = partnerResponse.colorId
+                )
+                return partner to null
+            }
+
+            else -> {
+                val errorMessage = runCatching {
+                    response.body<ErrorResponse>().message
+                }.getOrNull() ?: "Ошибка"
+
+                println("Ошибка: ${response.status}")
+
+                return null to errorMessage
+            }
         }
     }
 
-    suspend fun loadSession(user: UserModel) {
-        userSession.loadUser(user)
-        if (user.pairId != null) {
-            loadPartner()
-        } else {
-            partnerSession.loadPartner(UserModel.emptyPair().second)
-        }
-    }
+    suspend fun updateUser(iconId: Int, colorId: Int): Pair<UserModel?, String?> {
+        val token = tokenRepository.getToken() ?: return null to "Токен не найден!"
+        val response = userApiService.updateUser(iconId, colorId, token)
+        when (response.status) {
+            HttpStatusCode.OK -> {
+                val userResponse = response.body<UserResponse>()
+                val user = UserModel(
+                    id = userResponse.id,
+                    login = userResponse.login,
+                    pairId = userResponse.pairId,
+                    iconId = userResponse.iconId,
+                    colorId = userResponse.colorId
+                )
+                return user to null
+            }
 
-    suspend fun loadPartner() {
-        val token = tokenRepository.tokenFlow.first() ?: return
-        try {
-            val response = userApiService.getPartner(token)
-            val partner = UserModel(
-                id = response.id,
-                login = response.login,
-                pairId = response.pairId,
-                iconId = response.iconId,
-                colorId = response.colorId
-            )
-            partnerSession.loadPartner(partner)
-        } catch (e: Exception) {
-            println("Failed to load partner: ${e.message}")
+            else -> {
+                val errorMessage = runCatching {
+                    response.body<ErrorResponse>().message
+                }.getOrNull() ?: "Ошибка"
+
+                println("Ошибка: ${response.status}")
+
+                return null to errorMessage
+            }
         }
     }
 
@@ -120,12 +160,23 @@ open class UserRepository(
         return tokenRepository.getToken()
     }
 
-    suspend fun sendFcmToken(fcmToken: String): Boolean {
-        val token = tokenRepository.getToken() ?: return false
-        return try {
-            userApiService.updateFcmToken(token, fcmToken)
-        } catch (e: Exception) {
-            false
+    suspend fun sendFcmToken(fcmToken: String): Pair<Boolean?, String?> {
+        val token = tokenRepository.getToken() ?: return null to "Токен не найден!"
+        val response = userApiService.updateFcmToken(token, fcmToken)
+        when (response.status) {
+            HttpStatusCode.OK -> {
+                return true to null
+            }
+
+            else -> {
+                val errorMessage = runCatching {
+                    response.body<ErrorResponse>().message
+                }.getOrNull() ?: "Ошибка"
+
+                println("Ошибка: ${response.status}")
+
+                return null to errorMessage
+            }
         }
     }
 }
