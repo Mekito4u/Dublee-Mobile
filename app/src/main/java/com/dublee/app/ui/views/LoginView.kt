@@ -86,13 +86,11 @@ fun LoginView(
 
                 MyButton(
                     onClick = {
-                        viewModel.trySignIn(login, password) {
+                        viewModel.login(login, password) {
                             viewModel.viewModelScope.launch {
-                                viewModel.loadUserAndPartner()
-                                if (partner.id > 0){
+                                if (partner.id > 0) {
                                     navController.navigate(Nav.Main.route)
-                                }
-                                else{
+                                } else {
                                     navController.navigate(Nav.Pair.route)
                                 }
                             }

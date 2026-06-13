@@ -36,7 +36,6 @@ fun RegisterView(
     navController: NavController = rememberNavController(),
     viewModel: RegisterViewModel = koinViewModel()
 ) {
-    val partner by viewModel.partner.collectAsStateWithLifecycle()
     var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var repeatPassword by remember { mutableStateOf("") }
@@ -101,15 +100,9 @@ fun RegisterView(
                                 password2 = repeatPassword
                             )
                         ) {
-                            viewModel.trySignUp(login, password) {
+                            viewModel.register(login, password) {
                                 viewModel.viewModelScope.launch {
-                                    viewModel.loadUserAndPartner()
-                                    if (partner.id > 0){
-                                        navController.navigate(Nav.Main.route)
-                                    }
-                                    else{
-                                        navController.navigate(Nav.Pair.route)
-                                    }
+                                    navController.navigate(Nav.Pair.route)
                                 }
                             }
                         }
