@@ -1,13 +1,13 @@
 package com.dublee.app.data.remote.services
 
 import com.dublee.app.data.remote.dto.LoginRequest
-import com.dublee.app.data.remote.dto.LoginResponse
 import com.dublee.app.data.remote.dto.RegisterRequest
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
+import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
@@ -21,18 +21,15 @@ class AuthApiService {
         install(ContentNegotiation) { json(Json { ignoreUnknownKeys = true }) }
     }
 
-    suspend fun register(request: RegisterRequest): LoginResponse =
+    suspend fun register(request: RegisterRequest): HttpResponse =
         client.post(baseUrl + "register") {
             contentType(ContentType.Application.Json)
             setBody(request)
         }.body()
 
-    suspend fun login(request: LoginRequest): LoginResponse {
-        val response = client.post(baseUrl + "login") {
+    suspend fun login(request: LoginRequest): HttpResponse =
+        client.post(baseUrl + "login") {
             contentType(ContentType.Application.Json)
             setBody(request)
-        }
-        val status = response.status
-        return response.body()
-    }
+        }.body()
 }
